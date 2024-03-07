@@ -6,7 +6,7 @@ import processing.core.PImage;
 /**
  * This class implements the main graphic user interface (GUI) of the p05 Toy Saga II program
  */
-public class ToySaga { // TODO declare ToySaga to inherit from the PApplet class
+public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from the PApplet class
 
   // CONSTANTS
   // PATH to the folder of all images
@@ -65,6 +65,7 @@ public class ToySaga { // TODO declare ToySaga to inherit from the PApplet class
    * @param args list of input arguments if any
    */
   public static void main(String[] args) {
+    PApplet.main("ToySaga");
     // TODO edit this method
   }
 
