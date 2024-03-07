@@ -1,5 +1,8 @@
 import java.io.File;
 import java.util.ArrayList;
+
+import javax.swing.CellEditor;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -107,19 +110,23 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
   /**
    * Sets the size of the display window of this graphic application
    */
-  // @Override
-  // public void settings() {
-  // this.size(800, 600);
-  // }
+  @Override
+  public void settings() {
+  this.size(800, 600);
+  }
 
   /**
    * Sets the title and defines the initial environment properties of this graphic application. <br>
    * This method initializes all the data fields defined in this class.
    */
-  // @Override
-  // public void setup() {
-
-  // }
+  @Override
+  public void setup() {
+    this.getSurface().setTitle("P5 Toy Saga v2.0");
+    this.textAlign(CENTER, CENTER);
+    this.imageMode(CENTER);
+    this.rectMode(CORNERS);
+    this.focused = true;
+  }
 
   /**
    * This callback method continuously draws and updates the application display window. It is
