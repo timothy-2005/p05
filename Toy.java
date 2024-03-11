@@ -38,7 +38,7 @@ public class Toy extends GraphicObject implements MouseListener, Movable{
     }
 
     public boolean isOver(int x, int y){
-        if (x > this.x && x < this.x + image.width && y > this.y && y < this.y + image.height){
+        if (x > this.x - image.width / 2 && x < this.x + image.width / 2 && y > this.y - image.height / 2 && y < this.y + image.height / 2){
             return true;
         }
         return false;
@@ -46,6 +46,7 @@ public class Toy extends GraphicObject implements MouseListener, Movable{
     public void onClick(){
         if (!isDragging && isMouseOver()){
             isDragging = true;
+            move();
         }
     }
     public void onRelease(){

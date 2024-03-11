@@ -143,6 +143,29 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
     mode = "DAY_MODE";
     backgroundImage = loadImage(DAY_BACKGROUND);
     DrawableObjects.clear();
+
+    // within the ToySaga.setup() method
+    // TODO set the Processing for the SwitchButton class to be this ToySaga object
+    SwitchButton.setProcessing(this);
+
+    // TODO set the Processing for the GraphicObject class to be this ToySaga object
+    GraphicObject.setProcessing(this);
+
+    // TODO create a new SwitchButton at position (565, 20) and add it
+    // to the drawableObjects list
+    DrawableObjects.add(new SwitchButton(565, 20));
+
+    // TODO create a new GraphicObject BED at position (520, 270) and add it
+    // to the drawableObjects list
+    DrawableObjects.add(new GraphicObject(BED, 520, 270));
+
+    // TODO create a new GraphicObject RUG at position (220, 370) and add it
+    // to the drawableObjects list
+    DrawableObjects.add(new GraphicObject(RUG, 220, 370));
+
+    // TODO create a new GraphicObject NIGHTSTAND at position (325, 240) and add it
+    // to the drawableObjects list
+    DrawableObjects.add(new GraphicObject(NIGHTSTAND, 325, 240));
   }
 
   /**
@@ -215,22 +238,22 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
     switch(this.key) {
       case 'c':
       case 'C':
-        if (DrawableObjects.size() < MAX_TOYS_COUNT) {
-          DrawableObjects.add( new Toy("car.png", this.mouseX, this.mouseY));
+        if (this.getToyCount()< MAX_TOYS_COUNT) {
+          DrawableObjects.add(new Toy(CAR, this.mouseX, this.mouseY));
         }
         break;
 
       case 't':
       case 'T':
-        if (DrawableObjects.size() < MAX_TOYS_COUNT) {
-          DrawableObjects.add(new Toy("teddyBear.png", this.mouseX, this.mouseY));
+        if (this.getToyCount() < MAX_TOYS_COUNT) {
+          DrawableObjects.add(new Toy(BEAR, this.mouseX, this.mouseY));
         }
         break;
 
       case 'h':
       case 'H':
-        if (DrawableObjects.size() < MAX_TOYS_COUNT) {
-          DrawableObjects.add(new Toy("hoverBallOff.png", this.mouseX, this.mouseY));
+        if (this.getToyCount() < MAX_TOYS_COUNT) {
+          DrawableObjects.add(new Toy(HOVERBALL_OFF, this.mouseX, this.mouseY));
         }
         break;
 

@@ -5,11 +5,13 @@ public class GraphicObject extends Object implements Drawable{
     protected int y;
 
     public GraphicObject(String filename){
+        
         image = toySaga.loadImage(filename);
         x = 400;
         y = 300;
     }
     public GraphicObject(String filename, int x, int y){
+        
         image = toySaga.loadImage(filename);
         this.x = x;
         this.y = y;
