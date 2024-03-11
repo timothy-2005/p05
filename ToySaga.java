@@ -216,21 +216,21 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
       case 'c':
       case 'C':
         if (DrawableObjects.size() < MAX_TOYS_COUNT) {
-          DrawableObjects.add((Drawable) new Toy("car.png", this.mouseX, this.mouseY));
+          DrawableObjects.add( new Toy("car.png", this.mouseX, this.mouseY));
         }
         break;
 
       case 't':
       case 'T':
         if (DrawableObjects.size() < MAX_TOYS_COUNT) {
-          DrawableObjects.add((Drawable) new Toy("teddyBear.png", this.mouseX, this.mouseY));
+          DrawableObjects.add(new Toy("teddyBear.png", this.mouseX, this.mouseY));
         }
         break;
 
       case 'h':
       case 'H':
         if (DrawableObjects.size() < MAX_TOYS_COUNT) {
-          DrawableObjects.add((Drawable) new Toy("hoverBallOff.png", this.mouseX, this.mouseY));
+          DrawableObjects.add(new Toy("hoverBallOff.png", this.mouseX, this.mouseY));
         }
         break;
 

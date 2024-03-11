@@ -1,4 +1,4 @@
-public class GraphicObject {
+public class GraphicObject extends Object implements Drawable{
     protected processing.core.PImage image;
     protected static ToySaga toySaga;
     protected int x;
@@ -19,5 +19,14 @@ public class GraphicObject {
     }
     public void draw(){
         toySaga.image(image, x, y);
+    }
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
+    }
+    public static void setProcessing(ToySaga toySaga){
+        GraphicObject.toySaga = toySaga;
     }
 }

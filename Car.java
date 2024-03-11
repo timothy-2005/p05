@@ -37,7 +37,7 @@ public class Car extends Toy{
             move();
         }else{
             move(speed, 0);
-            if (isOver(image.width, y) || isOver(0, y)){
+            if (isOver(image.width, getY()) || isOver(0, getY())){
                 flipMoveDirection();
             }
         }
