@@ -1,10 +1,11 @@
 public class Car extends Toy{
-    private static int absoluteSpeed = 8;
+    private static int absoluteSpeed;
     private boolean isMovingRightward;
     private int speed;
 
     public Car(int x, int y) {
         super("car.png", x, y);
+        absoluteSpeed = 8;
         isMovingRightward = true;
         speed = absoluteSpeed;
     }
@@ -28,6 +29,23 @@ public class Car extends Toy{
         toySaga.popMatrix();
     }
     public void flipMoveDirection(){
-        
+        isMovingRightward = !isMovingRightward;
+        speed = - speed;        
+    }
+    public void move(){
+        if (!toySaga.isNightMode()){
+            move();
+        }else{
+            move(speed, 0);
+            if (isOver(image.width, y) || isOver(0, y)){
+                flipMoveDirection();
+            }
+        }
+    }
+    public static int getSpeed(){
+        return Car.absoluteSpeed;
+    }
+    public static void setSpeed(int speed){
+        absoluteSpeed = speed;
     }
 }
