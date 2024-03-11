@@ -32,7 +32,5 @@ public class GraphicObject extends Object implements Drawable{
     public static void setProcessing(ToySaga toySaga){
         GraphicObject.toySaga = toySaga;
     }
-    protected processing.core.PImage getImage(){
-        return image;
-    }
+    
 }

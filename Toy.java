@@ -10,6 +10,7 @@ public class Toy extends GraphicObject implements MouseListener, Movable{
         isDragging = false;
     }
     public void draw(){
+        move();
         super.draw();
     }
     public boolean isDragging(){
@@ -21,6 +22,7 @@ public class Toy extends GraphicObject implements MouseListener, Movable{
     public void move(){
         if (isDragging){
             move(toySaga.mouseX - toySaga.pmouseX, toySaga.mouseY - toySaga.pmouseY);
+            System.out.println("2");
         }
     }
     protected void move(int dx, int dy){
@@ -46,12 +48,13 @@ public class Toy extends GraphicObject implements MouseListener, Movable{
     public void onClick(){
         if (!isDragging && isMouseOver()){
             isDragging = true;
-            move();
+            
+            
         }
     }
     public void onRelease(){
         if (isDragging){
-            isDragging = false;
+            stopDragging();
         }
     }
     public boolean isMouseOver(){
