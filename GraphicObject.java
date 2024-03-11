@@ -20,5 +20,4 @@ public class GraphicObject {
     public void draw(){
         toySaga.image(image, x, y);
     }
-    
 }

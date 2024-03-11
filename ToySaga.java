@@ -57,7 +57,7 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
 
   // TODO add an instance (NOT final) field of type ArrayList named drawableObjects.
   // The drawableObjects arraylist stores elements of type Drawable (interface Drawable) ONLY.
-
+  
   // TODO add an instance (NOT final) field of type String named mode.
   // mode represents the current mode of this ToySaga application.
 
