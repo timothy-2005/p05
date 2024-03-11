@@ -1,8 +1,5 @@
 import java.io.File;
 import java.util.ArrayList;
-
-import javax.swing.CellEditor;
-
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -57,10 +54,11 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
 
   // TODO add an instance (NOT final) field of type ArrayList named drawableObjects.
   // The drawableObjects arraylist stores elements of type Drawable (interface Drawable) ONLY.
-  
+  private ArrayList<Drawable> DrawableObjects = new ArrayList<Drawable>();
+
   // TODO add an instance (NOT final) field of type String named mode.
   // mode represents the current mode of this ToySaga application.
-
+  private String mode;
 
   /**
    * Driver method that launches the application by calling this.runApplication()
@@ -68,9 +66,10 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    * @param args list of input arguments if any
    */
   public static void main(String[] args) {
-    PApplet.main("ToySaga");
     // TODO edit this method
+    PApplet.main("ToySaga");
   }
+
 
   /**
    * Gets the current mode of this Toy Saga app. The mode might be DAY or NIGHT.
@@ -79,7 +78,7 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    */
   public String getMode() {
     // TODO implement this method
-    return null; // default return statement
+    return mode; // default return statement
   }
 
   /**
@@ -89,6 +88,9 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    */
   public boolean isNightMode() {
     // TODO implement this method
+    if (mode.equals(NIGHT_MODE)) {
+      return true;
+    }
     return false; // default return statement
   }
 
@@ -101,6 +103,14 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    * background image accordingly.
    */
   public void switchMode() {
+    if (isNightMode()) {
+      mode = DAY_MODE;
+      backgroundImage = loadImage(DAY_BACKGROUND);
+    }
+    else {
+      mode = NIGHT_MODE;
+      backgroundImage = loadImage(NIGHT_BACKGROUND);
+    }
     // TODO implement this method
   }
 
@@ -112,7 +122,7 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    */
   @Override
   public void settings() {
-  this.size(800, 600);
+    this.size(800, 600);
   }
 
   /**
@@ -122,10 +132,17 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
   @Override
   public void setup() {
     this.getSurface().setTitle("P5 Toy Saga v2.0");
-    this.textAlign(CENTER, CENTER);
-    this.imageMode(CENTER);
-    this.rectMode(CORNERS);
-    this.focused = true;
+    this.textAlign(CENTER, CENTER);// horizontal alignment: center, vertical alignment: center
+    this.imageMode(CENTER);// interprets the second and third parameters of image() as the
+                        // image’s center point.
+    this.rectMode(CORNERS); // interprets the first two parameters of rect() as the location
+                        // of one corner, and the third and fourth parameters as the
+                        // location of the opposite corner.
+    this.focused = true;// sets the processing program to be focused (true), meaning that
+                        // it is active and will accept input from mouse or keyboard
+    mode = "DAY_MODE";
+    backgroundImage = loadImage(DAY_BACKGROUND);
+    DrawableObjects.clear();
   }
 
   /**
@@ -136,10 +153,13 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    * This method first draws the background image to the center of the screen. Then, it draws every
    * object stored in the drawableObjects list
    */
-  // @Override
-  // public void draw() {
-  //
-  // }
+  @Override
+  public void draw() {
+    image(backgroundImage, 400, 300);
+    for (int i = 0; i < DrawableObjects.size(); ++i) {
+      DrawableObjects.get(i).draw();
+    }
+  }
 
   /**
    * Callback method called once after every time the mouse button is pressed.
@@ -148,10 +168,14 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    * drawableObjects list
    * 
    */
-  // @Override
-  // public void mousePressed() {
-  //
-  // }
+  @Override
+  public void mousePressed() {
+    for (int i = 0; i < DrawableObjects.size(); ++i) {
+      if (DrawableObjects.get(i) instanceof MouseListener) {
+        ((MouseListener)DrawableObjects.get(i)).onClick();
+      }
+    }
+  }
 
   /**
    * Callback method called every time the mouse button is released.
@@ -160,10 +184,14 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    * drawableObjects list
    * 
    */
-  // @Override
-  // public void mouseReleased() {
-  //
-  // }
+  @Override
+  public void mouseReleased() {
+    for (int i = 0; i < DrawableObjects.size(); ++i) {
+      if (DrawableObjects.get(i) instanceof MouseListener) {
+        ((MouseListener)DrawableObjects.get(i)).onRelease();
+      }
+    }
+  }
 
   /**
    * Callback method called once every time a key is pressed. The key that was pressed is returned
@@ -182,15 +210,73 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    * the background image of this application. <BR>
    *
    */
-  // @Override
-  // public void keyPressed() {
-  //
-  //
-  // }
+  @Override
+  public void keyPressed() {
+    switch(this.key) {
+      case 'c':
+      case 'C':
+        if (DrawableObjects.size() < MAX_TOYS_COUNT) {
+          DrawableObjects.add((Drawable) new Toy("car.png", this.mouseX, this.mouseY));
+        }
+        break;
+
+      case 't':
+      case 'T':
+        if (DrawableObjects.size() < MAX_TOYS_COUNT) {
+          DrawableObjects.add((Drawable) new Toy("teddyBear.png", this.mouseX, this.mouseY));
+        }
+        break;
+
+      case 'h':
+      case 'H':
+        if (DrawableObjects.size() < MAX_TOYS_COUNT) {
+          DrawableObjects.add((Drawable) new Toy("hoverBallOff.png", this.mouseX, this.mouseY));
+        }
+        break;
+
+      case 'd':
+      case 'D':
+        mode = DAY_MODE;
+        backgroundImage = loadImage(DAY_BACKGROUND);
+        break;
+
+      case 'n':
+      case 'N':
+        mode = NIGHT_MODE;
+        backgroundImage = loadImage(NIGHT_BACKGROUND);
+        break;
+    }
+
+  }
   
 
   // TODO add and implement the noToyIsDragging() and getToyCount() methods (See link to javadocs
   // in the write-up for details)
 
+  /**
+   * Returns true if NO Toy object is currently dragging. We assume that there is at most one object being
+   * dragged at a given time.
+   * @return - true if no toy is being dragged, or null otherwise.
+   */
+  public boolean noToyIsDragging() {
+    for (int i = 0; i < DrawableObjects.size(); ++i) {
+      if (DrawableObjects.get(i) instanceof Toy) {
+        if (((Toy)DrawableObjects.get(i)).isDragging()) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  public int getToyCount() {
+    int count = 0;
+    for (int i = 0; i < DrawableObjects.size(); ++i) {
+      if (DrawableObjects.get(i) instanceof Toy) {
+        count++;
+      }
+    }
+    return count;
+  }
 
 }
