@@ -6,7 +6,7 @@ public class TeddyBear extends Toy{
     private boolean rotationDirection;
 
     public TeddyBear(int x, int y){
-        super("teddybear.png", x, y);
+        super(ToySaga.BEAR, x, y);
         callout = new Callout(x, y);
         rotation = 0;
         rotationDirection = true;
@@ -26,12 +26,12 @@ public class TeddyBear extends Toy{
     public void draw(){
         if (toySaga.isNightMode()){
             System.out.println("3");
-            drawTeddyBearAtNightMode();
+            drawTeddyBearNightMode();
         }else{
             super.draw();
         }
     }
-    public void drawTeddyBearAtNightMode(){
+    public void drawTeddyBearNightMode(){
         System.out.println("1");
         this.move();
         toySaga.pushMatrix();

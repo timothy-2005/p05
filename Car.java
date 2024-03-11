@@ -4,7 +4,7 @@ public class Car extends Toy{
     private int speed;
 
     public Car(int x, int y) {
-        super("car.png", x, y);
+        super(ToySaga.CAR, x, y);
         absoluteSpeed = 8;
         isMovingRightward = true;
         speed = absoluteSpeed;
@@ -15,7 +15,7 @@ public class Car extends Toy{
             move();
             drawCarNightMode();
         }else{
-            draw();
+            super.draw();
         }
     }
     private void drawCarNightMode(){
