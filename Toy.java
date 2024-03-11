@@ -45,9 +45,12 @@ public class Toy extends GraphicObject implements MouseListener, Movable{
         }
         return false;
     }
+    public void startDragging(){
+        isDragging = true;
+    }
     public void onClick(){
         if (!isDragging && isMouseOver()){
-            isDragging = true;
+            startDragging();
             
             
         }
