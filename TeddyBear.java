@@ -25,13 +25,15 @@ public class TeddyBear extends Toy{
     }
     public void draw(){
         if (toySaga.isNightMode()){
+            System.out.println("3");
             drawTeddyBearAtNightMode();
         }else{
             super.draw();
         }
     }
     public void drawTeddyBearAtNightMode(){
-        move();
+        System.out.println("1");
+        this.move();
         toySaga.pushMatrix();
         toySaga.translate(x, y);
         toySaga.rotate(rotation * PApplet.PI / 2);
@@ -52,6 +54,7 @@ public class TeddyBear extends Toy{
                 setRotationDirection(true);
             }
             setRotation(rotation);
+            
         }
     }
 }

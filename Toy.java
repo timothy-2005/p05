@@ -49,7 +49,7 @@ public class Toy extends GraphicObject implements MouseListener, Movable{
         isDragging = true;
     }
     public void onClick(){
-        if (!isDragging && isMouseOver()){
+        if (toySaga.noToyIsDragging() && isMouseOver()){
             startDragging();
             
             
