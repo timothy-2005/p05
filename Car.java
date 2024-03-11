@@ -34,10 +34,10 @@ public class Car extends Toy{
     }
     public void move(){
         if (!toySaga.isNightMode()){
-            move();
+            super.move();
         }else{
             move(speed, 0);
-            if (isOver(image.width, getY()) || isOver(0, getY())){
+            if (x >= toySaga.width || x <= 0){
                 flipMoveDirection();
             }
         }

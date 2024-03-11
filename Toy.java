@@ -22,7 +22,7 @@ public class Toy extends GraphicObject implements MouseListener, Movable{
     public void move(){
         if (isDragging){
             move(toySaga.mouseX - toySaga.pmouseX, toySaga.mouseY - toySaga.pmouseY);
-            System.out.println("2");
+            
         }
     }
     protected void move(int dx, int dy){
