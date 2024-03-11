@@ -6,14 +6,15 @@ public class GraphicObject extends Object implements Drawable{
 
     public GraphicObject(String filename){
         GraphicObject newGraphicObject = new GraphicObject(filename);
-        x = image.width / 2;
-        y = image.height / 2;
+        x = 400;
+        y = 300;
     }
     public GraphicObject(String filename, int x, int y){
         GraphicObject newGraphicObject = new GraphicObject(filename);
         this.x = x;
         this.y = y;
     }
+    
     public void setImage(String filename){
         image = toySaga.loadImage(filename);
     }
@@ -28,5 +29,8 @@ public class GraphicObject extends Object implements Drawable{
     }
     public static void setProcessing(ToySaga toySaga){
         GraphicObject.toySaga = toySaga;
+    }
+    protected processing.core.PImage getImage(){
+        return image;
     }
 }
