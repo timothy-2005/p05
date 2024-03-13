@@ -1,7 +1,10 @@
 /**
- * Car class is a subclass of Toy class. It has a unique draw method that draws the car in night mode. It also has a move method that moves the car in night mode. It has a flipMoveDirection method that flips the direction of the car. It has a getSpeed method that returns the absolute speed of the car. It has a setSpeed method that sets the absolute speed of the car.
+ * Car class is a subclass of Toy class. It has a unique draw method that draws the car in night
+ * mode. It also has a move method that moves the car in night mode. It has a flipMoveDirection
+ * method that flips the direction of the car. It has a getSpeed method that returns the absolute
+ * speed of the car. It has a setSpeed method that sets the absolute speed of the car.
  */
-public class Car extends Toy{
+public class Car extends Toy {
     /**
      * Absolute speed of the car
      */
@@ -17,6 +20,7 @@ public class Car extends Toy{
 
     /**
      * Constructs a new Car object with a specific x and y position
+     * 
      * @param x x-position of the center of the car
      * @param y y-position of the center of the car
      */
@@ -31,11 +35,11 @@ public class Car extends Toy{
      * Draws the car on the screen
      */
     @Override
-    public void draw(){
-        if (toySaga.isNightMode()){
+    public void draw() {
+        if (toySaga.isNightMode()) {
             move();
             drawCarNightMode();
-        }else{
+        } else {
             super.draw();
         }
     }
@@ -43,11 +47,11 @@ public class Car extends Toy{
     /**
      * Draws the car on the screen in night mode
      */
-    private void drawCarNightMode(){
+    private void drawCarNightMode() {
         toySaga.pushMatrix();
         toySaga.rotate(0.0f);
         toySaga.translate(x, y);
-        if (!isMovingRightward){
+        if (!isMovingRightward) {
             toySaga.scale(-1.0f, 1.0f);
         }
         toySaga.image(image, 0.0f, 0.0f);
@@ -57,21 +61,21 @@ public class Car extends Toy{
     /**
      * Flips the direction of the car
      */
-    public void flipMoveDirection(){
+    public void flipMoveDirection() {
         isMovingRightward = !isMovingRightward;
-        speed = - speed;        
+        speed = -speed;
     }
 
     /**
      * Moves the car on the screen
      */
     @Override
-    public void move(){
-        if (!toySaga.isNightMode()){
+    public void move() {
+        if (!toySaga.isNightMode()) {
             super.move();
-        }else{
+        } else {
             move(speed, 0);
-            if (x >= toySaga.width || x <= 0){
+            if (x >= toySaga.width || x <= 0) {
                 flipMoveDirection();
             }
         }
@@ -80,15 +84,16 @@ public class Car extends Toy{
     /**
      * Returns the absolute speed of the car
      */
-    public static int getSpeed(){
+    public static int getSpeed() {
         return Car.absoluteSpeed;
     }
 
     /**
      * Sets the absolute speed of the car
+     * 
      * @param speed new absolute speed of the car
      */
-    public static void setSpeed(int speed){
+    public static void setSpeed(int speed) {
         absoluteSpeed = speed;
     }
 }
