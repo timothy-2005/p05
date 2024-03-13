@@ -194,8 +194,8 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
   @Override
   public void mousePressed() {
     for (int i = 0; i < DrawableObjects.size(); ++i) {
-      if (DrawableObjects.get(i) instanceof MouseListener) {
-        ((MouseListener)DrawableObjects.get(i)).onClick();
+      if (DrawableObjects.get(i) instanceof MouseListener) { // check if the object is an instance of MouseListener
+        ((MouseListener)DrawableObjects.get(i)).onClick(); // call the onClick() method
       }
     }
   }
@@ -209,9 +209,9 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    */
   @Override
   public void mouseReleased() {
-    for (int i = 0; i < DrawableObjects.size(); ++i) {
-      if (DrawableObjects.get(i) instanceof MouseListener) {
-        ((MouseListener)DrawableObjects.get(i)).onRelease();
+    for (int i = 0; i < DrawableObjects.size(); ++i) { 
+      if (DrawableObjects.get(i) instanceof MouseListener) { // check if the object is an instance of MouseListener
+        ((MouseListener)DrawableObjects.get(i)).onRelease(); // call the onRelease() method
       }
     }
   }
@@ -237,36 +237,36 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
   public void keyPressed() {
     switch(this.key) {
       case 'c':
-      case 'C':
+      case 'C': // if the key pressed is 'c' or 'C'
         if (this.getToyCount()< MAX_TOYS_COUNT) {
-          DrawableObjects.add(new Car(this.mouseX, this.mouseY));
+          DrawableObjects.add(new Car(this.mouseX, this.mouseY)); // add a new Car object at the mouse position
         }
         break;
 
       case 't':
-      case 'T':
+      case 'T': // if the key pressed is 't' or 'T'
         if (this.getToyCount() < MAX_TOYS_COUNT) {
-          DrawableObjects.add(new TeddyBear(this.mouseX, this.mouseY));
+          DrawableObjects.add(new TeddyBear(this.mouseX, this.mouseY)); // add a new TeddyBear object at the mouse position
         }
         break;
 
       case 'h':
-      case 'H':
+      case 'H': // if the key pressed is 'h' or 'H'
         if (this.getToyCount() < MAX_TOYS_COUNT) {
-          DrawableObjects.add(new Hoverball(this.mouseX, this.mouseY));
+          DrawableObjects.add(new Hoverball(this.mouseX, this.mouseY)); // add a new Hoverball object at the mouse position
         }
         break;
 
       case 'd':
-      case 'D':
+      case 'D': // if the key pressed is 'd' or 'D'
         mode = DAY_MODE;
-        backgroundImage = loadImage(DAY_BACKGROUND);
+        backgroundImage = loadImage(DAY_BACKGROUND); // set the mode to DAY_MODE and load the DAY_BACKGROUND for the background image
         break;
 
       case 'n':
       case 'N':
-        mode = NIGHT_MODE;
-        backgroundImage = loadImage(NIGHT_BACKGROUND);
+        mode = NIGHT_MODE; // if the key pressed is 'n' or 'N'
+        backgroundImage = loadImage(NIGHT_BACKGROUND); // set the mode to NIGHT_MODE and load the NIGHT_BACKGROUND for the background image
         break;
     }
 
@@ -284,7 +284,7 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
   public boolean noToyIsDragging() {
     for (int i = 0; i < DrawableObjects.size(); ++i) {
       if (DrawableObjects.get(i) instanceof Toy) {
-        if (((Toy)DrawableObjects.get(i)).isDragging()) {
+        if (((Toy)DrawableObjects.get(i)).isDragging()) { // check if the object is being dragged
           return false;
         }
       }
