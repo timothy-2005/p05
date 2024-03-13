@@ -6,7 +6,7 @@ import processing.core.PImage;
 /**
  * This class implements the main graphic user interface (GUI) of the p05 Toy Saga II program
  */
-public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from the PApplet class
+public class ToySaga extends PApplet { // TODO declare ToySaga to inherit from the PApplet class
 
   // CONSTANTS
   // PATH to the folder of all images
@@ -106,8 +106,7 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
     if (isNightMode()) {
       mode = DAY_MODE;
       backgroundImage = loadImage(DAY_BACKGROUND);
-    }
-    else {
+    } else {
       mode = NIGHT_MODE;
       backgroundImage = loadImage(NIGHT_BACKGROUND);
     }
@@ -134,10 +133,10 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
     this.getSurface().setTitle("P5 Toy Saga v2.0");
     this.textAlign(CENTER, CENTER);// horizontal alignment: center, vertical alignment: center
     this.imageMode(CENTER);// interprets the second and third parameters of image() as the
-                        // image’s center point.
+    // image’s center point.
     this.rectMode(CORNERS); // interprets the first two parameters of rect() as the location
-                        // of one corner, and the third and fourth parameters as the
-                        // location of the opposite corner.
+    // of one corner, and the third and fourth parameters as the
+    // location of the opposite corner.
     this.focused = true;// sets the processing program to be focused (true), meaning that
                         // it is active and will accept input from mouse or keyboard
     mode = DAY_MODE;
@@ -194,8 +193,9 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
   @Override
   public void mousePressed() {
     for (int i = 0; i < drawableObjects.size(); ++i) {
-      if (drawableObjects.get(i) instanceof MouseListener) { // check if the object is an instance of MouseListener
-        ((MouseListener)drawableObjects.get(i)).onClick(); // call the onClick() method
+      if (drawableObjects.get(i) instanceof MouseListener) { // check if the object is an instance
+                                                             // of MouseListener
+        ((MouseListener) drawableObjects.get(i)).onClick(); // call the onClick() method
       }
     }
   }
@@ -209,9 +209,10 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    */
   @Override
   public void mouseReleased() {
-    for (int i = 0; i < drawableObjects.size(); ++i) { 
-      if (drawableObjects.get(i) instanceof MouseListener) { // check if the object is an instance of MouseListener
-        ((MouseListener)drawableObjects.get(i)).onRelease(); // call the onRelease() method
+    for (int i = 0; i < drawableObjects.size(); ++i) {
+      if (drawableObjects.get(i) instanceof MouseListener) { // check if the object is an instance
+                                                             // of MouseListener
+        ((MouseListener) drawableObjects.get(i)).onRelease(); // call the onRelease() method
       }
     }
   }
@@ -235,56 +236,64 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    */
   @Override
   public void keyPressed() {
-    switch(this.key) {
+    switch (this.key) {
       case 'c':
       case 'C': // if the key pressed is 'c' or 'C'
-        if (this.getToyCount()< MAX_TOYS_COUNT) {
-          drawableObjects.add(new Car(this.mouseX, this.mouseY)); // add a new Car object at the mouse position
+        if (this.getToyCount() < MAX_TOYS_COUNT) {
+          drawableObjects.add(new Car(this.mouseX, this.mouseY)); // add a new Car object at the
+                                                                  // mouse position
         }
         break;
 
       case 't':
       case 'T': // if the key pressed is 't' or 'T'
         if (this.getToyCount() < MAX_TOYS_COUNT) {
-          drawableObjects.add(new TeddyBear(this.mouseX, this.mouseY)); // add a new TeddyBear object at the mouse position
+          drawableObjects.add(new TeddyBear(this.mouseX, this.mouseY)); // add a new TeddyBear
+                                                                        // object at the mouse
+                                                                        // position
         }
         break;
 
       case 'h':
       case 'H': // if the key pressed is 'h' or 'H'
         if (this.getToyCount() < MAX_TOYS_COUNT) {
-          drawableObjects.add(new Hoverball(this.mouseX, this.mouseY)); // add a new Hoverball object at the mouse position
+          drawableObjects.add(new Hoverball(this.mouseX, this.mouseY)); // add a new Hoverball
+                                                                        // object at the mouse
+                                                                        // position
         }
         break;
 
       case 'd':
       case 'D': // if the key pressed is 'd' or 'D'
         mode = DAY_MODE;
-        backgroundImage = loadImage(DAY_BACKGROUND); // set the mode to DAY_MODE and load the DAY_BACKGROUND for the background image
+        backgroundImage = loadImage(DAY_BACKGROUND); // set the mode to DAY_MODE and load the
+                                                     // DAY_BACKGROUND for the background image
         break;
 
       case 'n':
       case 'N':
         mode = NIGHT_MODE; // if the key pressed is 'n' or 'N'
-        backgroundImage = loadImage(NIGHT_BACKGROUND); // set the mode to NIGHT_MODE and load the NIGHT_BACKGROUND for the background image
+        backgroundImage = loadImage(NIGHT_BACKGROUND); // set the mode to NIGHT_MODE and load the
+                                                       // NIGHT_BACKGROUND for the background image
         break;
     }
 
   }
-  
+
 
   // TODO add and implement the noToyIsDragging() and getToyCount() methods (See link to javadocs
   // in the write-up for details)
 
   /**
-   * Returns true if NO Toy object is currently dragging. We assume that there is at most one object being
-   * dragged at a given time.
+   * Returns true if NO Toy object is currently dragging. We assume that there is at most one object
+   * being dragged at a given time.
+   * 
    * @return - true if no toy is being dragged, or null otherwise.
    */
   public boolean noToyIsDragging() {
     for (int i = 0; i < drawableObjects.size(); ++i) {
       if (drawableObjects.get(i) instanceof Toy) {
-        if (((Toy)drawableObjects.get(i)).isDragging()) { // check if the object is being dragged
+        if (((Toy) drawableObjects.get(i)).isDragging()) { // check if the object is being dragged
           return false;
         }
       }
@@ -292,6 +301,10 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
     return true;
   }
 
+  /**
+   * Returns the number of Toy objects currently stored in the drawableObjects list.
+   * @return - the number of Toy objects currently stored in the drawableObjects list.
+   */
   public int getToyCount() {
     int count = 0;
     for (int i = 0; i < drawableObjects.size(); ++i) {
@@ -301,5 +314,4 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
     }
     return count;
   }
-
 }
