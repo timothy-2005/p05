@@ -1,3 +1,4 @@
+import processing.core.PImage;
 /**
  * GraphicObject is a class that represents a drawable object in the game.
  */
@@ -5,7 +6,7 @@ public class GraphicObject extends Object implements Drawable{
     /**
      * PImage object that represents the image of this object
      */
-    protected processing.core.PImage image;
+    protected PImage image;
     /**
      * ToySaga PApplet object where the button will be displayed
      */

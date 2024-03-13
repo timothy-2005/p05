@@ -54,7 +54,7 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
 
   // TODO add an instance (NOT final) field of type ArrayList named drawableObjects.
   // The drawableObjects arraylist stores elements of type Drawable (interface Drawable) ONLY.
-  private ArrayList<Drawable> DrawableObjects = new ArrayList<Drawable>();
+  private ArrayList<Drawable> drawableObjects = new ArrayList<Drawable>();
 
   // TODO add an instance (NOT final) field of type String named mode.
   // mode represents the current mode of this ToySaga application.
@@ -140,9 +140,9 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
                         // location of the opposite corner.
     this.focused = true;// sets the processing program to be focused (true), meaning that
                         // it is active and will accept input from mouse or keyboard
-    mode = "DAY_MODE";
+    mode = DAY_MODE;
     backgroundImage = loadImage(DAY_BACKGROUND);
-    DrawableObjects.clear();
+    drawableObjects.clear();
 
     // within the ToySaga.setup() method
     // TODO set the Processing for the SwitchButton class to be this ToySaga object
@@ -153,19 +153,19 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
 
     // TODO create a new SwitchButton at position (565, 20) and add it
     // to the drawableObjects list
-    DrawableObjects.add(new SwitchButton(565, 20));
+    drawableObjects.add(new SwitchButton(565, 20));
 
     // TODO create a new GraphicObject BED at position (520, 270) and add it
     // to the drawableObjects list
-    DrawableObjects.add(new GraphicObject(BED, 520, 270));
+    drawableObjects.add(new GraphicObject(BED, 520, 270));
 
     // TODO create a new GraphicObject RUG at position (220, 370) and add it
     // to the drawableObjects list
-    DrawableObjects.add(new GraphicObject(RUG, 220, 370));
+    drawableObjects.add(new GraphicObject(RUG, 220, 370));
 
     // TODO create a new GraphicObject NIGHTSTAND at position (325, 240) and add it
     // to the drawableObjects list
-    DrawableObjects.add(new GraphicObject(NIGHTSTAND, 325, 240));
+    drawableObjects.add(new GraphicObject(NIGHTSTAND, 325, 240));
   }
 
   /**
@@ -179,8 +179,8 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
   @Override
   public void draw() {
     image(backgroundImage, 400, 300);
-    for (int i = 0; i < DrawableObjects.size(); ++i) {
-      DrawableObjects.get(i).draw();
+    for (int i = 0; i < drawableObjects.size(); ++i) {
+      drawableObjects.get(i).draw();
     }
   }
 
@@ -193,9 +193,9 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    */
   @Override
   public void mousePressed() {
-    for (int i = 0; i < DrawableObjects.size(); ++i) {
-      if (DrawableObjects.get(i) instanceof MouseListener) { // check if the object is an instance of MouseListener
-        ((MouseListener)DrawableObjects.get(i)).onClick(); // call the onClick() method
+    for (int i = 0; i < drawableObjects.size(); ++i) {
+      if (drawableObjects.get(i) instanceof MouseListener) { // check if the object is an instance of MouseListener
+        ((MouseListener)drawableObjects.get(i)).onClick(); // call the onClick() method
       }
     }
   }
@@ -209,9 +209,9 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    */
   @Override
   public void mouseReleased() {
-    for (int i = 0; i < DrawableObjects.size(); ++i) { 
-      if (DrawableObjects.get(i) instanceof MouseListener) { // check if the object is an instance of MouseListener
-        ((MouseListener)DrawableObjects.get(i)).onRelease(); // call the onRelease() method
+    for (int i = 0; i < drawableObjects.size(); ++i) { 
+      if (drawableObjects.get(i) instanceof MouseListener) { // check if the object is an instance of MouseListener
+        ((MouseListener)drawableObjects.get(i)).onRelease(); // call the onRelease() method
       }
     }
   }
@@ -239,21 +239,21 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
       case 'c':
       case 'C': // if the key pressed is 'c' or 'C'
         if (this.getToyCount()< MAX_TOYS_COUNT) {
-          DrawableObjects.add(new Car(this.mouseX, this.mouseY)); // add a new Car object at the mouse position
+          drawableObjects.add(new Car(this.mouseX, this.mouseY)); // add a new Car object at the mouse position
         }
         break;
 
       case 't':
       case 'T': // if the key pressed is 't' or 'T'
         if (this.getToyCount() < MAX_TOYS_COUNT) {
-          DrawableObjects.add(new TeddyBear(this.mouseX, this.mouseY)); // add a new TeddyBear object at the mouse position
+          drawableObjects.add(new TeddyBear(this.mouseX, this.mouseY)); // add a new TeddyBear object at the mouse position
         }
         break;
 
       case 'h':
       case 'H': // if the key pressed is 'h' or 'H'
         if (this.getToyCount() < MAX_TOYS_COUNT) {
-          DrawableObjects.add(new Hoverball(this.mouseX, this.mouseY)); // add a new Hoverball object at the mouse position
+          drawableObjects.add(new Hoverball(this.mouseX, this.mouseY)); // add a new Hoverball object at the mouse position
         }
         break;
 
@@ -282,9 +282,9 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
    * @return - true if no toy is being dragged, or null otherwise.
    */
   public boolean noToyIsDragging() {
-    for (int i = 0; i < DrawableObjects.size(); ++i) {
-      if (DrawableObjects.get(i) instanceof Toy) {
-        if (((Toy)DrawableObjects.get(i)).isDragging()) { // check if the object is being dragged
+    for (int i = 0; i < drawableObjects.size(); ++i) {
+      if (drawableObjects.get(i) instanceof Toy) {
+        if (((Toy)drawableObjects.get(i)).isDragging()) { // check if the object is being dragged
           return false;
         }
       }
@@ -294,8 +294,8 @@ public class ToySaga extends PApplet{ // TODO declare ToySaga to inherit from th
 
   public int getToyCount() {
     int count = 0;
-    for (int i = 0; i < DrawableObjects.size(); ++i) {
-      if (DrawableObjects.get(i) instanceof Toy) {
+    for (int i = 0; i < drawableObjects.size(); ++i) {
+      if (drawableObjects.get(i) instanceof Toy) {
         count++;
       }
     }
